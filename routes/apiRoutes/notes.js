@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const fs = require('fs');
+const path = require('path');
 const uuid = require('uuid');
 const { notes } = require('../../db/db.json');
 
@@ -30,22 +31,31 @@ router.post('/notes', (req, res) => {
   }
 
   notes.push(newNote);
-  res.json(notes);
+
+  fs.writeFileSync(
+    path.join(__dirname, '../../db/db.json'),
+    JSON.stringify({ notes: notes }, null, 2)
+  );
+
+  const response = {
+    status: 'success',
+    body: notes,
+  };
+
+  res.json(response);
 });
 
 // Update note
 router.put('/notes/:id', (req, res) => {
   const found = notes.some((notes) => notes.id === req.params.id);
-
+  const updatedNote = req.body;
   if (found) {
-    const updatedNote = req.body;
+    notes.forEach((note) => {
+      if (note.id === req.params.id) {
+        note.title = updatedNote.title ? updatedNote.title : note.title;
+        note.text = updatedNote.text ? updatedNote.text : note.text;
 
-    notes.forEach((notes) => {
-      if (notes.id === req.params.id) {
-        notes.title = updatedNote.title ? updatedNote.title : notes.title;
-        notes.text = updatedNote.text ? updatedNote.text : notes.text;
-
-        res.json({ msg: 'Note Updated', notes });
+        res.json({ msg: `Note ${req.params.id} Updated`, notes });
       }
     });
   } else {
@@ -65,6 +75,7 @@ router.delete('/notes/:id', (req, res) => {
   } else {
     res.status(400).json({ error: `Note not found with id ${req.params.id}` });
   }
+  return notes;
 });
 
 module.exports = router;

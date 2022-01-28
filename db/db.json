@@ -1,16 +1,19 @@
 {
   "notes": [
     {
-      "title": "Test Title",
-      "text": "Test text"
+      "id": "f6c71521-6f68-4032-bedd-a7bdf17a336a",
+      "title": "New Title",
+      "text": "New notes and stuff"
     },
     {
-      "title": "Title 1",
-      "text": "Text"
+      "id": "360b099c-fda5-4e61-8cee-e4a39efaf6d2",
+      "title": "New Title",
+      "text": "New notes and stuff"
     },
     {
-      "title": "Title 2",
-      "text": "Test text"
+      "id": "450d99da-3348-4a49-848f-ab00f776cece",
+      "title": "New Title",
+      "text": "New notes and stuff"
     }
   ]
 }
