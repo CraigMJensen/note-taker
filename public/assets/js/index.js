@@ -16,7 +16,7 @@ const showData = (element) => (element.style.display = 'inline');
 
 const hideData = (element) => (element.style.display = 'none');
 
-let activeNote = {};
+let currentNote = {};
 
 const getNotes = () =>
   fetch('/api/notes', {
@@ -43,14 +43,14 @@ const deleteNote = (id) =>
     },
   });
 
-const renderNote = () => {
+const displayNotes = () => {
   hideData(saveNoteBtn);
 
-  if (activeNote.id) {
+  if (currentNote.id) {
     noteTitle.setAttribute('readonly', true);
     noteText.setAttribute('readonly', true);
-    noteTitle.value = activeNote.title;
-    noteText.value = activeNote.text;
+    noteTitle.value = currentNote.title;
+    noteText.value = currentNote.text;
   } else {
     noteTitle.removeAttribute('readonly');
     noteText.removeAttribute('readonly');
@@ -59,45 +59,45 @@ const renderNote = () => {
   }
 };
 
-const handleNoteSave = () => {
+const noteSave = () => {
   const newNote = {
     title: noteTitle.value,
     text: noteText.value,
   };
   saveNote(newNote).then(() => {
-    getAndRenderNotes();
-    renderNote();
+    getAnddisplayNotess();
+    displayNotes();
   });
 };
 
-const handleNoteDelete = (e) => {
+const noteDelete = (e) => {
   e.stopPropagation();
 
   const note = e.target;
   const noteId = JSON.parse(note.parentElement.getAttribute('data-note')).id;
 
-  if (activeNote.id === noteId) {
-    activeNote = {};
+  if (currentNote.id === noteId) {
+    currentNote = {};
   }
 
   deleteNote(noteId).then(() => {
-    getAndRenderNotes();
-    renderNote();
+    getAnddisplayNotess();
+    displayNotes();
   });
 };
 
-const handleNoteView = (e) => {
+const noteView = (e) => {
   e.preventDefault();
-  activeNote = JSON.parse(e.target.parentElement.getAttribute('data-note'));
-  renderNote();
+  currentNote = JSON.parse(e.target.parentElement.getAttribute('data-note'));
+  displayNotes();
 };
 
-const handleNewNoteView = (e) => {
-  activeNote = {};
-  renderNote();
+const newNoteView = (e) => {
+  currentNote = {};
+  displayNotes();
 };
 
-const handleRenderSaveBtn = () => {
+const displaySaveBtn = () => {
   if (!noteTitle.value.trim() || !noteText.value.trim()) {
     hideData(saveNoteBtn);
   } else {
@@ -105,7 +105,7 @@ const handleRenderSaveBtn = () => {
   }
 };
 
-const renderNoteList = async (notes) => {
+const displayNotesList = async (notes) => {
   let jsonNotes = await notes.json();
   if (window.location.pathname === '/notes') {
     noteList.forEach((el) => (el.innerHTML = ''));
@@ -121,7 +121,7 @@ const renderNoteList = async (notes) => {
     const spanEl = document.createElement('span');
     spanEl.classList.add('list-item-title');
     spanEl.innerText = text;
-    spanEl.addEventListener('click', handleNoteView);
+    spanEl.addEventListener('click', noteView);
 
     liEl.append(spanEl);
 
@@ -134,7 +134,7 @@ const renderNoteList = async (notes) => {
         'text-danger',
         'delete-note'
       );
-      delBtnEl.addEventListener('click', handleNoteDelete);
+      delBtnEl.addEventListener('click', noteDelete);
 
       liEl.append(delBtnEl);
     }
@@ -158,13 +158,13 @@ const renderNoteList = async (notes) => {
   }
 };
 
-const getAndRenderNotes = () => getNotes().then(renderNoteList);
+const getAnddisplayNotess = () => getNotes().then(displayNotesList);
 
 if (window.location.pathname === '/notes') {
-  saveNoteBtn.addEventListener('click', handleNoteSave);
-  newNoteBtn.addEventListener('click', handleNewNoteView);
-  noteTitle.addEventListener('keyup', handleRenderSaveBtn);
-  noteText.addEventListener('keyup', handleRenderSaveBtn);
+  saveNoteBtn.addEventListener('click', noteSave);
+  newNoteBtn.addEventListener('click', newNoteView);
+  noteTitle.addEventListener('keyup', displaySaveBtn);
+  noteText.addEventListener('keyup', displaySaveBtn);
 }
 
-getAndRenderNotes();
+getAnddisplayNotess();
