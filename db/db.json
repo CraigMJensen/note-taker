@@ -1,19 +1,17 @@
-{
-  "notes": [
-    {
-      "id": "f6c71521-6f68-4032-bedd-a7bdf17a336a",
-      "title": "New Title",
-      "text": "New notes and stuff"
-    },
-    {
-      "id": "360b099c-fda5-4e61-8cee-e4a39efaf6d2",
-      "title": "New Title",
-      "text": "New notes and stuff"
-    },
-    {
-      "id": "450d99da-3348-4a49-848f-ab00f776cece",
-      "title": "New Title",
-      "text": "New notes and stuff"
-    }
-  ]
-}
+[
+  {
+    "title": "New Stuff",
+    "text": "new note",
+    "id": "a732200f-4d7a-4234-9f7a-6ce3a521d7d0"
+  },
+  {
+    "title": "New Stuff",
+    "text": "new note",
+    "id": "5b5710b6-995b-4c24-866f-75ea53ef8721"
+  },
+  {
+    "title": "New Stuff",
+    "text": "new note",
+    "id": "3e3118b5-0156-402d-8ca8-0a7ce6908e34"
+  }
+]
