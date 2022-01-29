@@ -65,7 +65,7 @@ const noteSave = () => {
     text: noteText.value,
   };
   saveNote(newNote).then(() => {
-    getAnddisplayNotess();
+    getAndDisplayNotes();
     displayNotes();
   });
 };
@@ -81,7 +81,7 @@ const noteDelete = (e) => {
   }
 
   deleteNote(noteId).then(() => {
-    getAnddisplayNotess();
+    getAndDisplayNotes();
     displayNotes();
   });
 };
@@ -158,7 +158,7 @@ const displayNotesList = async (notes) => {
   }
 };
 
-const getAnddisplayNotess = () => getNotes().then(displayNotesList);
+const getAndDisplayNotes = () => getNotes().then(displayNotesList);
 
 if (window.location.pathname === '/notes') {
   saveNoteBtn.addEventListener('click', noteSave);
@@ -167,4 +167,4 @@ if (window.location.pathname === '/notes') {
   noteText.addEventListener('keyup', displaySaveBtn);
 }
 
-getAnddisplayNotess();
+getAndDisplayNotes();
