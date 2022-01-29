@@ -1,6 +1,6 @@
 const router = require('express').Router();
 
-const savedData = require('../../db/savedData');
+const savedData = require('../db/savedData');
 
 // Get notes
 router.get('/notes', (req, res) => {

@@ -1,16 +1,16 @@
 const express = require('express');
 
-const apiRoutes = require('./routes/apiRoutes/notes');
-const htmlRoutes = require('./routes/htmlRoutes');
-
-const PORT = process.env.PORT || 3001;
+const apiRoutes = require('./routes/apiRoute');
+const htmlRoutes = require('./routes/htmlRoute');
 
 const app = express();
-app.use(express.static('public'));
+
+const PORT = process.env.PORT || 3001;
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
+app.use(express.static('public'));
 app.use('/api', apiRoutes);
 app.use('/', htmlRoutes);
 
