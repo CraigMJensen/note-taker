@@ -10,7 +10,7 @@ router.get('/notes', (req, res) => {
     .catch((err) => res.status(500).json(err));
 });
 
-// Post notes
+// Post note
 router.post('/notes', (req, res) => {
   savedData
     .addNote(req.body)
