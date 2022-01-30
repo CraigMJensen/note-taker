@@ -24,7 +24,7 @@
 
 ## Screenshot
 
-  ![Note Taker Screenshot](db\images\note-taker.png)
+  ![Note Taker Screenshot](db\images\note-taker.png\)
 
 
 ## Usage
