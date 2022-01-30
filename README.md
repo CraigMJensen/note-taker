@@ -15,22 +15,21 @@
 ## Link to Active Product
 
   * http://craigmjensen.github.io/note-taker/
+  * https://intense-meadow-12785.herokuapp.com/
 
 ## Table of Contents
 
-  * [Installation](#installation)
   * [Usage](#usage)
   * [License](#license)
 
-## Installation
+## Screenshot
 
-  * 
-
+  ![Note Taker Screenshot](db\images\note-taker.png)
 
 
 ## Usage
 
-  * Visit the live page at
+  * Visit the live page at https://intense-meadow-12785.herokuapp.com/
 
   
 ## License
